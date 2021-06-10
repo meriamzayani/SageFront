@@ -1,0 +1,37 @@
+
+<cdk-virtual-scroll-viewport itemSize="100" class="container"></cdk-virtual-scroll-viewport>
+    <nb-layout center>
+ 
+      
+        <nb-layout-column>
+          
+    <nb-chat title="Conversation with a Bot">
+        <nb-chat-message *ngFor="let msg of messages"
+                         type="file"
+                         [message]="msg.text"
+                         [reply]="msg.reply"
+                         [sender]="msg.sender"
+                         [date]="msg.date"
+                         [files]="msg.files"
+                         [avatar]="msg.avatar"
+                         >
+                         
+    </nb-chat-message>
+    
+    
+    <nb-chat-message *ngIf="loading" [nbSpinner]="loading" nbSpinnerStatus="info"
+        type="text"
+        avatar="/assets/meriam.png"
+        message="...">
+        
+    </nb-chat-message>
+    
+    
+        <nb-chat-form (send)="handleUserMessage($event)" [dropFiles]="true">
+        </nb-chat-form>
+    
+    </nb-chat>
+        </nb-layout-column>
+    
+      </nb-layout>
+

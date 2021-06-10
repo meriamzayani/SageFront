@@ -1,0 +1,37 @@
+.meriam{
+font-size: 2cm;
+
+
+border-radius: 50%;
+}
+.ala{
+  height: 400px !important;
+  background-repeat: no-repeat; 
+background-size: cover;
+}
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
