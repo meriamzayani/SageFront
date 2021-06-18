@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TokenStorageService } from '../_services/token-storage.service';
+
 const dialogflowURL = 'http://localhost:8080/send-msg';
 @Component({
   selector: 'app-chatbot',
@@ -22,11 +24,13 @@ export class ChatbotComponent implements OnInit {
   
   // Random ID to maintain session with server
   sessionId = Math.random().toString(36).slice(-5);
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-  
-    this.addBotMessage('Bonjour User !!​😁​🤩​ Je suis votre assistante virtuelle Sage ,Comment puis-je vous aider ');
+    
+    console.log(this.tokenStorage.getUser());
+    const user = this.tokenStorage.getUser();
+    this.addBotMessage(`Bonjour ${user.username} !!​😁​🤩​ Je suis votre assistante virtuelle Sage ,Comment puis-je vous aider`);
   }
 
   handleUserMessage(event) {
@@ -45,13 +49,16 @@ export class ChatbotComponent implements OnInit {
    
 
     this.addUserMessage(text,files);
+    const headers = new HttpHeaders().set('x-access-token', `${this.tokenStorage.getToken()}`);
 
     this.loading = true;
-
+   
     // Make the request 
+    const userId =this.tokenStorage.getUser().id;
+    
     this.http.post<any>(
       dialogflowURL,
-      {text})
+      {text}, { headers })
     .subscribe(res => {
       const { Reply } = res;
       this.addBotMessage(Reply);
