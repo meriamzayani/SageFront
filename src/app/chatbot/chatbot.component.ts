@@ -30,7 +30,7 @@ export class ChatbotComponent implements OnInit {
     
     console.log(this.tokenStorage.getUser());
     const user = this.tokenStorage.getUser();
-    this.addBotMessage(`Bonjour ${user.username} !!​😁​🤩​ Je suis votre assistante virtuelle Sage ,Comment puis-je vous aider`);
+    this.addBotMessage(`Bonjour ${user.username} !!​😁​🤩​ Je suis votre assistante virtuelle Sage,Comment puis-je vous aider?`);
   }
 
   handleUserMessage(event) {
