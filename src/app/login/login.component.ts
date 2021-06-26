@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = 'user not found';
+  errorMessage = '';
   roles: string[] = [];
 
   isSubmitted = false;
