@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { MatDialogConfig,MatDialog } from '@angular/material/dialog';
 
 const dialogflowURL = 'http://localhost:8080/send-msg';
 @Component({
@@ -24,7 +25,7 @@ export class ChatbotComponent implements OnInit {
   
   // Random ID to maintain session with server
   sessionId = Math.random().toString(36).slice(-5);
-  constructor(private http: HttpClient,private tokenStorage: TokenStorageService) { }
+  constructor(private http: HttpClient,private tokenStorage: TokenStorageService,private dialog : MatDialog) { }
 
   ngOnInit(): void {
     
@@ -83,12 +84,15 @@ export class ChatbotComponent implements OnInit {
     this.messages.push({
       text:text,
       sender: 'Sage',
-      avatar: '/assets/sage.gif',
+      avatar: '/assets/sage2.gif',
       date: new Date(),
       type: this.files.length ? 'file' : 'text',
       //files: this.files, 
       
     });
+  }
+  onCreate(){
+    this.dialog.open(ChatbotComponent)
   }
 
 

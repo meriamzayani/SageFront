@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule,NbChatModule,NbSpinnerModule,NbCardModule,NbListModule } from '@nebular/theme';
 import {ScrollingModule} from '@angular/cdk/scrolling'
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -49,9 +51,11 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbSpinnerModule,
     NbCardModule,
     NbListModule,
-    ScrollingModule
+    ScrollingModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ChatbotComponent]
 })
 export class AppModule { }
